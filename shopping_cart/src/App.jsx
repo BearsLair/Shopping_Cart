@@ -1,3 +1,5 @@
+import Home from "./components/Home";
+
 function App() {
   return (
     <>
@@ -18,6 +20,7 @@ function App() {
         </div>
         <hr />
       </nav>
+      <Home />
     </>
   );
 }
