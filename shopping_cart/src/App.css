@@ -3,3 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.nav-links-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
