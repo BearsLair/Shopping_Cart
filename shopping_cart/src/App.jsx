@@ -1,4 +1,5 @@
 import Home from "./components/Home";
+import ProductList from "./components/ProductsList";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         </div>
         <hr />
       </nav>
-      <Home />
+      <ProductList />
     </>
   );
 }
