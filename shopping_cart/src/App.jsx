@@ -1,7 +1,26 @@
 import Home from "./components/Home";
 import ProductList from "./components/ProductsList";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP Error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => setProducts(data))
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
+  }, []);
+
   return (
     <>
       <nav>
