@@ -7,6 +7,8 @@ function App() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    let isMounted = true;
+
     fetch("https://fakestoreapi.com/products")
       .then((res) => {
         if (!res.ok) {
@@ -19,6 +21,10 @@ function App() {
         console.log(err);
         setError(err);
       });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -40,7 +46,7 @@ function App() {
         </div>
         <hr />
       </nav>
-      <ProductList />
+      <ProductList products={products} />
     </>
   );
 }
