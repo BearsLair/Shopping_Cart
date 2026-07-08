@@ -1,9 +1,12 @@
 import Home from "./components/Home";
 import ProductList from "./components/ProductsList";
+import Cart from "./components/Cart";
 import { useState, useEffect } from "react";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [shoppingCart, setShoppingCart] = useState([]);
+  const [total, setTotal] = useState(0);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -22,6 +25,7 @@ function App() {
         setError(err);
       });
 
+    // Cleanup function preventing potential race conditions
     return () => {
       isMounted = false;
     };
@@ -46,7 +50,7 @@ function App() {
         </div>
         <hr />
       </nav>
-      <ProductList products={products} />
+      <Cart />
     </>
   );
 }
