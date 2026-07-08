@@ -4,7 +4,8 @@ const Cart = ({ shoppingCart }) => {
   return (
     <div className="w-3/4">
       <h1 className="text-center">Your Cart</h1>
-      <ul>
+      <CartItem name="Item" quantity="Quantity" price="Price" />
+      <ul className="mt-5 mb-5">
         {shoppingCart.map((item) => {
           console.log(item);
           return (
@@ -19,7 +20,7 @@ const Cart = ({ shoppingCart }) => {
         })}
       </ul>
       <p>
-        Total: <span>$100</span>
+        Total: <span>0</span>
       </p>
       <button>Proceed to Checkout (Disabled)</button>
     </div>
