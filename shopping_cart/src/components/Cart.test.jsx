@@ -1,4 +1,4 @@
-import { it, describe, expect } from "vitest";
+import { it, describe, expect, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Cart from "./Cart";
@@ -19,28 +19,22 @@ describe("renders CartItem (child) component with correct Cart (parent) data", (
     },
   ];
 
-  render(<Cart shoppingCart={currentCart} />);
-
-  const itemName = screen.getByText("Duffle Bag");
-  const itemQuantity = screen.getByText("3");
-  const itemTotalPrice = screen.getByText("$45.55");
-
-  const itemName2 = screen.getByText("2TB Disc Drive");
-  const itemQuantity2 = screen.getByText("2");
-  const itemTotalPrice2 = screen.getByText("$75.95");
+  beforeEach(() => {
+    render(<Cart shoppingCart={currentCart} />);
+  });
 
   it("The names of both items should be present", () => {
-    expect(itemName).toBeInTheDocument();
-    expect(itemName2).toBeInTheDocument();
+    expect(screen.getByText("Duffle Bag")).toBeInTheDocument();
+    expect(screen.getByText("2TB Disc Drive")).toBeInTheDocument();
   });
 
   it("Both quantity values should be present", () => {
-    expect(itemQuantity).toBeInTheDocument();
-    expect(itemQuantity2).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
   });
 
-  it("Both total price values should be present", () => {
-    expect(itemTotalPrice).toBeInTheDocument();
-    expect(itemTotalPrice2).toBeInTheDocument();
+  it("Price for each item should be present", () => {
+    expect(screen.getByText("$45.55")).toBeInTheDocument();
+    expect(screen.getByText("$75.95")).toBeInTheDocument();
   });
 });
