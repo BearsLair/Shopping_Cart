@@ -1,5 +1,5 @@
 import Home from "./components/Home";
-import ProductList from "./components/ProductsList";
+import ProductsList from "./components/ProductsList";
 import Cart from "./components/Cart";
 import { useState, useEffect } from "react";
 
@@ -8,6 +8,27 @@ function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState("");
+
+  const handleAddToCart = (id, quantity) => {
+    let shoppingCartCopy = [...shoppingCart];
+
+    let itemToAdd = {};
+
+    products.map((item) => {
+      if (item.id === id) {
+        itemToAdd = {
+          id: item.id,
+          name: item.title,
+          quantity: quantity,
+          price: item.price,
+        };
+
+        shoppingCartCopy.push(itemToAdd);
+
+        setShoppingCart(shoppingCartCopy);
+      }
+    });
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -50,7 +71,8 @@ function App() {
         </div>
         <hr />
       </nav>
-      <Cart />
+      <ProductsList products={products} addToCart={handleAddToCart} />
+      <Cart shoppingCart={shoppingCart} />
     </>
   );
 }
