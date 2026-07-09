@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const ProductCard = ({ id, img, name, price, description, addToCart }) => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const handleQuantityChange = (e) => {
-    const currentQuantity = e.target.value;
+    const currentQuantity = Number(e.target.value);
     setQuantity(currentQuantity);
   };
 
