@@ -1,4 +1,13 @@
-const ProductCard = ({ id, img, name, price, description }) => {
+import { useState } from "react";
+
+const ProductCard = ({ id, img, name, price, description, addToCart }) => {
+  const [quantity, setQuantity] = useState(0);
+
+  const handleQuantityChange = (e) => {
+    const currentQuantity = e.target.value;
+    setQuantity(currentQuantity);
+  };
+
   return (
     <div className="flex flex-row m-3 w-md h-auto">
       <img className="w-40 h-fit" src={img}></img>
@@ -8,9 +17,19 @@ const ProductCard = ({ id, img, name, price, description }) => {
         <p className="mb-5">{description}</p>
         <div className="flex flex-row mb-2">
           <p>Quantity: </p>
-          <input type="number" className=""></input>
+          <input
+            type="number"
+            className=""
+            value={quantity}
+            onChange={handleQuantityChange}
+          ></input>
         </div>
-        <button className="align-center mb-2">Add to Cart</button>
+        <button
+          className="align-center mb-2"
+          onClick={() => addToCart(id, quantity)}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
