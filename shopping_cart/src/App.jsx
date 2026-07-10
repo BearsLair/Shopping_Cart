@@ -17,7 +17,7 @@ function App() {
         newTotal += Math.round(cart[i].price * 100);
       }
     }
-    setTotal(newTotal / 100);
+    setTotal((newTotal / 100).toFixed(2));
   };
 
   const handleAddToCart = (id, quantity) => {
