@@ -1,19 +1,20 @@
 import CartItem from "./CartItem";
 
-const Cart = ({ shoppingCart }) => {
+const Cart = ({ shoppingCart, handleDelete }) => {
   return (
     <div className="w-3/4">
       <h1 className="text-center">Your Cart</h1>
       <CartItem name="Item" quantity="Quantity" price="Price" />
       <ul className="mt-5 mb-5">
         {shoppingCart.map((item) => {
-          console.log(item);
           return (
             <li key={item.id}>
               <CartItem
+                id={item.id}
                 name={item.name}
                 quantity={item.quantity}
                 price={item.price}
+                handleDelete={handleDelete}
               />
             </li>
           );

@@ -30,6 +30,22 @@ function App() {
     });
   };
 
+  const handleDeleteItem = (id) => {
+    let index;
+
+    for (let i = 0; i < shoppingCart.length; i++) {
+      if (shoppingCart[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+
+    const cartCopy = [...shoppingCart];
+    cartCopy.splice(index, 1);
+
+    setShoppingCart(cartCopy);
+  };
+
   useEffect(() => {
     let isMounted = true;
 
@@ -72,7 +88,7 @@ function App() {
         <hr />
       </nav>
       <ProductsList products={products} addToCart={handleAddToCart} />
-      <Cart shoppingCart={shoppingCart} />
+      <Cart shoppingCart={shoppingCart} handleDelete={handleDeleteItem} />
     </>
   );
 }
