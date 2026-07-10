@@ -9,6 +9,17 @@ function App() {
   const [total, setTotal] = useState(0);
   const [error, setError] = useState("");
 
+  const updateTotal = (cart) => {
+    let newTotal = 0;
+
+    for (let i = 0; i < cart.length; i++) {
+      for (let k = 1; k < cart[i].quantity + 1; k++) {
+        newTotal += cart[i].price;
+      }
+    }
+    setTotal(newTotal);
+  };
+
   const handleAddToCart = (id, quantity) => {
     let shoppingCartCopy = [...shoppingCart];
 
@@ -26,6 +37,8 @@ function App() {
         shoppingCartCopy.push(itemToAdd);
 
         setShoppingCart(shoppingCartCopy);
+
+        updateTotal(shoppingCartCopy);
       }
     });
   };
@@ -44,6 +57,8 @@ function App() {
     cartCopy.splice(index, 1);
 
     setShoppingCart(cartCopy);
+
+    updateTotal(cartCopy);
   };
 
   const handleUpdateQuantity = (id, incrementOrDecrement) => {
@@ -66,9 +81,11 @@ function App() {
     } else if (incrementOrDecrement === "increment") {
       cartCopy[index].quantity += 1;
       setShoppingCart(cartCopy);
+      updateTotal(cartCopy);
     } else if (incrementOrDecrement === "decrement") {
       cartCopy[index].quantity -= 1;
       setShoppingCart(cartCopy);
+      updateTotal(cartCopy);
     }
   };
 
@@ -119,6 +136,7 @@ function App() {
         shoppingCart={shoppingCart}
         handleDelete={handleDeleteItem}
         updateQuantity={handleUpdateQuantity}
+        total={total}
       />
     </>
   );

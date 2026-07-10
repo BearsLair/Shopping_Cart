@@ -1,6 +1,6 @@
 import CartItem from "./CartItem";
 
-const Cart = ({ shoppingCart, handleDelete, updateQuantity }) => {
+const Cart = ({ shoppingCart, handleDelete, updateQuantity, total }) => {
   return (
     <div className="w-3/4">
       <h1 className="text-center">Your Cart</h1>
@@ -22,7 +22,7 @@ const Cart = ({ shoppingCart, handleDelete, updateQuantity }) => {
         })}
       </ul>
       <p>
-        Total: <span>0</span>
+        Total: <span>${total}</span>
       </p>
       <button>Proceed to Checkout (Disabled)</button>
     </div>
