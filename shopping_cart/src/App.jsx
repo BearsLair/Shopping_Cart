@@ -46,6 +46,23 @@ function App() {
     setShoppingCart(cartCopy);
   };
 
+  const handleUpdateQuantity = (id, newQuantity) => {
+    let index;
+
+    for (let i = 0; i < shoppingCart.length; i++) {
+      if (shoppingCart[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+
+    const cartCopy = [...shoppingCart];
+    cartCopy[index].quantity = newQuantity;
+
+    setShoppingCart(cartCopy);
+  };
+
+  // Fetch data from server ONCE (limit network usage) on site load
   useEffect(() => {
     let isMounted = true;
 
@@ -93,4 +110,4 @@ function App() {
   );
 }
 
-export default App;
+export { App, handleAddToCart, handleDeleteItem, handleUpdateQuantity };
