@@ -1,6 +1,6 @@
 import CartItem from "./CartItem";
 
-const Cart = ({ shoppingCart, handleDelete }) => {
+const Cart = ({ shoppingCart, handleDelete, updateQuantity }) => {
   return (
     <div className="w-3/4">
       <h1 className="text-center">Your Cart</h1>
@@ -15,6 +15,7 @@ const Cart = ({ shoppingCart, handleDelete }) => {
                 quantity={item.quantity}
                 price={item.price}
                 handleDelete={handleDelete}
+                updateQuantity={updateQuantity}
               />
             </li>
           );

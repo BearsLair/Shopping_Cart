@@ -1,4 +1,11 @@
-const CartItem = ({ id, name, quantity, price, handleDelete }) => {
+const CartItem = ({
+  id,
+  name,
+  quantity,
+  price,
+  handleDelete,
+  updateQuantity,
+}) => {
   return (
     <div className="grid grid-cols-4 grid-rows-1 gap-5">
       <p>{name}</p>

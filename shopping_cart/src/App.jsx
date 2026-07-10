@@ -105,9 +105,13 @@ function App() {
         <hr />
       </nav>
       <ProductsList products={products} addToCart={handleAddToCart} />
-      <Cart shoppingCart={shoppingCart} handleDelete={handleDeleteItem} />
+      <Cart
+        shoppingCart={shoppingCart}
+        handleDelete={handleDeleteItem}
+        updateQuantity={handleUpdateQuantity}
+      />
     </>
   );
 }
 
-export { App, handleAddToCart, handleDeleteItem, handleUpdateQuantity };
+export default App;
