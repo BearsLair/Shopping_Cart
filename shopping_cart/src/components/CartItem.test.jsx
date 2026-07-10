@@ -1,5 +1,6 @@
-import { it, describe, expect } from "vitest";
+import { it, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import CartItem from "./CartItem";
 
@@ -23,5 +24,29 @@ describe("CartItem", () => {
     expect(itemName).toBeInTheDocument();
     expect(itemQuantity).toBeInTheDocument();
     expect(itemTotalPrice).toBeInTheDocument();
+  });
+
+  it("Calls delete function when user clicks X button", async () => {
+    const mockDelete = vi.fn();
+    const user = userEvent.setup();
+
+    render(
+      <CartItem
+        id={1}
+        name="Item to Delete"
+        quantity={1}
+        price={29.99}
+        handleDelete={mockDelete}
+      />,
+    );
+
+    const deleteButton = screen.getByRole("button", {
+      name: "❌",
+    });
+
+    await user.click(deleteButton);
+
+    expect(mockDelete).toHaveBeenCalledWith(1);
+    expect(mockDelete).toHaveBeenCalledTimes(1);
   });
 });
