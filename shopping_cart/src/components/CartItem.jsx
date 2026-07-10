@@ -4,9 +4,13 @@ const CartItem = ({ id, name, quantity, price, handleDelete }) => {
       <p>{name}</p>
       <p>{quantity}</p>
       <p>${price}</p>
-      <button className="" onClick={() => handleDelete(id)}>
-        ❌
-      </button>
+      {name === "Item" ? (
+        "Delete?"
+      ) : (
+        <button className="" onClick={() => handleDelete(id)}>
+          ❌
+        </button>
+      )}
     </div>
   );
 };
