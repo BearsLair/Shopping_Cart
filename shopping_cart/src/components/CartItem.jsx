@@ -13,15 +13,20 @@ const CartItem = ({
       {name === "Item" ? (
         <p>"Amount"</p>
       ) : (
-        <div className="flex flex-row align-center">
-          <p className="mr-3">{quantity}</p>
+        <div className="flex flex-row h-fill justify-center">
+          <p className="mr-3 h-fit">{quantity}</p>
           <button
-            className="mr-1"
+            className="mr-1 h-fit"
             onClick={() => updateQuantity(id, "increment")}
           >
             ⬆️
           </button>
-          <button onClick={() => updateQuantity(id, "decrement")}>⬇️</button>
+          <button
+            className="h-fit"
+            onClick={() => updateQuantity(id, "decrement")}
+          >
+            ⬇️
+          </button>
         </div>
       )}
 
