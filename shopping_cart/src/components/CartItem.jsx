@@ -14,18 +14,23 @@ const CartItem = ({
         <p>"Amount"</p>
       ) : (
         <div className="flex flex-row align-center">
-          <p>{quantity}</p>
-          <button onClick={() => updateQuantity(id, "increment")}>UP</button>
-          <button onClick={() => updateQuantity(id, "decrement")}>DOWN</button>
+          <p className="mr-3">{quantity}</p>
+          <button
+            className="mr-1"
+            onClick={() => updateQuantity(id, "increment")}
+          >
+            ⬆️
+          </button>
+          <button onClick={() => updateQuantity(id, "decrement")}>⬇️</button>
         </div>
       )}
 
       <p>${price}</p>
       {name === "Item" ? (
-        "Delete?"
+        "Delete from Cart"
       ) : (
-        <button className="" onClick={() => handleDelete(id)}>
-          ❌
+        <button className="m-0 p-0 w-fit" onClick={() => handleDelete(id)}>
+          🗑️
         </button>
       )}
     </div>
