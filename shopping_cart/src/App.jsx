@@ -46,8 +46,8 @@ function App() {
     setShoppingCart(cartCopy);
   };
 
-  const handleUpdateQuantity = (id, newQuantity) => {
-    let index;
+  const handleUpdateQuantity = (id, incrementOrDecrement) => {
+    let index = -1;
 
     for (let i = 0; i < shoppingCart.length; i++) {
       if (shoppingCart[i].id === id) {
@@ -56,10 +56,20 @@ function App() {
       }
     }
 
-    const cartCopy = [...shoppingCart];
-    cartCopy[index].quantity = newQuantity;
+    let cartCopy = [...shoppingCart];
 
-    setShoppingCart(cartCopy);
+    if (
+      cartCopy[index].quantity === 1 &&
+      incrementOrDecrement === "decrement"
+    ) {
+      null;
+    } else if (incrementOrDecrement === "increment") {
+      cartCopy[index].quantity += 1;
+      setShoppingCart(cartCopy);
+    } else if (incrementOrDecrement === "decrement") {
+      cartCopy[index].quantity -= 1;
+      setShoppingCart(cartCopy);
+    }
   };
 
   // Fetch data from server ONCE (limit network usage) on site load

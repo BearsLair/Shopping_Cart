@@ -9,7 +9,17 @@ const CartItem = ({
   return (
     <div className="grid grid-cols-4 grid-rows-1 gap-5">
       <p>{name}</p>
-      <p>{quantity}</p>
+
+      {name === "Item" ? (
+        <p>"Amount"</p>
+      ) : (
+        <div className="flex flex-row align-center">
+          <p>{quantity}</p>
+          <button onClick={() => updateQuantity(id, "increment")}>UP</button>
+          <button onClick={() => updateQuantity(id, "decrement")}>DOWN</button>
+        </div>
+      )}
+
       <p>${price}</p>
       {name === "Item" ? (
         "Delete?"
