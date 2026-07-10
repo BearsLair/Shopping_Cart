@@ -14,10 +14,10 @@ function App() {
 
     for (let i = 0; i < cart.length; i++) {
       for (let k = 1; k < cart[i].quantity + 1; k++) {
-        newTotal += cart[i].price;
+        newTotal += Math.round(cart[i].price * 100);
       }
     }
-    setTotal(newTotal);
+    setTotal(newTotal / 100);
   };
 
   const handleAddToCart = (id, quantity) => {
