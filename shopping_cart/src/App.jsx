@@ -2,8 +2,12 @@ import Home from "./components/Home";
 import ProductsList from "./components/ProductsList";
 import Cart from "./components/Cart";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router";
 
 function App() {
+  const { page } = useParams();
+
   const [products, setProducts] = useState([]);
   const [shoppingCart, setShoppingCart] = useState([]);
   const [total, setTotal] = useState(0);
@@ -118,23 +122,28 @@ function App() {
         <h1 className="text-6xl mb-10">BearsDen Online Store</h1>
         <div className="flex flex-row justify-between">
           <div>
-            <a className="text-2xl mr-5" href="#">
+            <Link className="text-2xl mr-5" to={"/products"}>
               Items for Sale
-            </a>
+            </Link>
           </div>
-          <a className="text-2xl mr-5" href="#">
-            Shopping Chart
-          </a>
+          <Link className="text-2xl mr-5" to={"/cart"}>
+            {page === "cart" ? "Checkout (Disabled)" : "Shopping Cart"}
+          </Link>
         </div>
         <hr />
       </nav>
-      <ProductsList products={products} addToCart={handleAddToCart} />
-      <Cart
-        shoppingCart={shoppingCart}
-        handleDelete={handleDeleteItem}
-        updateQuantity={handleUpdateQuantity}
-        total={total}
-      />
+      {page === "products" ? (
+        <ProductsList products={products} addToCart={handleAddToCart} />
+      ) : page === "cart" ? (
+        <Cart
+          shoppingCart={shoppingCart}
+          handleDelete={handleDeleteItem}
+          updateQuantity={handleUpdateQuantity}
+          total={total}
+        />
+      ) : (
+        <Home />
+      )}
     </>
   );
 }
